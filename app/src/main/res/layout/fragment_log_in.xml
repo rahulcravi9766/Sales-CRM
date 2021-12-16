@@ -1,0 +1,281 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModelInXml"
+            type="com.rahul.viewModel.LogInViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.rahul.signUpAndLogInFragments.LogInFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue">
+
+            <TextView
+                android:id="@+id/main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfo"
+                android:text="Sales CRM"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="32dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="32dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome back"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="95dp" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="170dp" />
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/or_text">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/login_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/relativeLayout4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                tools:ignore="UsingOnClickInXml" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="20dp" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/guideline10"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9">
+
+                <TextView
+                    android:id="@+id/do_not_have_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't have an account?  " />
+
+                <TextView
+                    android:id="@+id/sign_up_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/do_not_have_text"
+                    android:text="Sign up"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/forgot_password_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Forgot your password?"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/otp_button">
+
+                <View
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_white" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+                <View
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:background="@color/light_white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/or_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="or"
+                android:textColor="@color/light_white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/otp_button" />
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/google_sign_in_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Log in with Google"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_icons_google"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/otp_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Log in with OTP"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                app:icon="@drawable/phone"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/google_sign_in_button"
+                app:startIconDrawable="@drawable/ic_eyeopen" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
+</layout>

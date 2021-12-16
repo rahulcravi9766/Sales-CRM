@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModelInXml"
+            type="com.rahul.viewModel.FinishSignUpViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue"
+        tools:context="com.rahul.phaseOneFragments.FinishSignUpFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfo"
+                android:text="Sales CRM"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline25" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finish Signing up"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline26"
+                app:layout_constraintTop_toTopOf="@+id/guideline28" />
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline27"
+                app:layout_constraintStart_toStartOf="@+id/guideline26"
+                app:layout_constraintTop_toTopOf="@+id/guideline29">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline27"
+                app:layout_constraintStart_toStartOf="@+id/guideline26"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company Name">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_set_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline27"
+                app:layout_constraintStart_toStartOf="@+id/guideline26"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/filledTextField3"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_confirm_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+
+                android:id="@+id/login_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/guideline30"
+                app:layout_constraintEnd_toStartOf="@+id/guideline27"
+                app:layout_constraintStart_toStartOf="@+id/guideline26" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="32dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="32dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="95dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="170dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="40dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>
