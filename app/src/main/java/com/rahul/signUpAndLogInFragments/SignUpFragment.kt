@@ -27,11 +27,8 @@ class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private lateinit var navController: NavController
     private val viewModel: SignUpViewModel by viewModels()
-    lateinit var pass: String
-    lateinit var emaill: String
-    lateinit var ph: String
-    lateinit var name1: String
-    lateinit var company1: String
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +42,7 @@ class SignUpFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
+
         binding.logInText.setOnClickListener {
             val action = SignUpFragmentDirections.actionSignUpFragmentToLogInFragment()
             navController.navigate(action)
@@ -54,20 +52,22 @@ class SignUpFragment : Fragment() {
             when {
                 password.length < 5 -> {
                     binding.nextButton.isEnabled = false
-                    binding.nextButton.isClickable = false
+//                    binding.nextButton.isClickable = false
 
                     binding.editTextSetPassword.error = "minimum 5 characters"
                     Log.i("password", password)
                 }
                 password.isNullOrEmpty() -> {
                     binding.nextButton.isEnabled = false
-                    binding.nextButton.isClickable = false
+//                    binding.nextButton.isClickable = false
 
                     binding.editTextSetPassword.error = "Field is required"
                 }
                 else -> {
-                    binding.nextButton.isClickable = true
+//                    binding.nextButton.isClickable = true
                     binding.nextButton.isEnabled = true
+
+
                     //  pass = binding.editTextSetPassword.text.toString()
                     //  viewModel.validatePassword = true
                 }
@@ -77,19 +77,20 @@ class SignUpFragment : Fragment() {
         viewModel.email.observe(viewLifecycleOwner, Observer { email ->
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 binding.nextButton.isEnabled = false
-                binding.nextButton.isClickable = false
+//                binding.nextButton.isClickable = false
 
 
                 binding.editTextEmail.error = "Enter your valid email id"
             } else if (email.isNullOrEmpty()) {
                 binding.nextButton.isEnabled = false
-                binding.nextButton.isClickable = false
+//                binding.nextButton.isClickable = false
 
 
                 binding.editTextEmail.error = "Field is required"
             } else {
-                binding.nextButton.isClickable = true
+//                binding.nextButton.isClickable = true
                 binding.nextButton.isEnabled = true
+
 
                 // emaill = binding.editTextEmail.text.toString()
                 //  viewModel.validateEmail = true
@@ -100,23 +101,23 @@ class SignUpFragment : Fragment() {
         viewModel.company.observe(viewLifecycleOwner, Observer { company ->
             when {
                 company.isNullOrEmpty() -> {
-                    binding.editTextCompanyName.error = "Field is required"
+                    binding.companyEditContainer.helperText = "Field is required"
                     binding.nextButton.isEnabled = false
-                    binding.nextButton.isClickable = false
+//                    binding.nextButton.isClickable = false
 
 
                 }
                 company.length < 4 -> {
-                    binding.nextButton.isEnabled = false
-                    binding.nextButton.isClickable = false
+//                    binding.nextButton.isEnabled = false
+//                    binding.nextButton.isClickable = false
 
-                    binding.editTextCompanyName.error = "Minimum 4 characters"
+                    binding.companyEditContainer.helperText = "Minimum 4 characters"
                 }
                 else -> {
-                    binding.nextButton.isClickable = true
+//                    binding.nextButton.isClickable = true
                     binding.nextButton.isEnabled = true
-                    //    company1 = binding.editTextCompanyName.text.toString()
-                    //  viewModel.validateCompany = true
+
+
                     Log.i("company", viewModel.name.value.toString())
 
                 }
@@ -125,20 +126,25 @@ class SignUpFragment : Fragment() {
 
 
         viewModel.phoneNumber.observe(viewLifecycleOwner, Observer { phoneNumber ->
-            if (!Patterns.PHONE.matcher(phoneNumber.toString()).matches()) {
+           // if (!Patterns.PHONE.matcher(phoneNumber.toString()).matches())
+          if(!phoneNumber.matches(".*[0-9]".toRegex()))  {
                 binding.nextButton.isEnabled = false
-                binding.nextButton.isClickable = false
+//                binding.nextButton.isClickable = false
 
 
                 binding.editTextPhoneNumber.error = "Enter your valid phone number"
-            } else if (phoneNumber == null) {
+            } else if (phoneNumber.isNullOrEmpty()) {
                 binding.nextButton.isEnabled = false
-                binding.nextButton.isClickable = false
+//                binding.nextButton.isClickable = false
 
 
                 binding.editTextPhoneNumber.error = "This field is required"
-            } else {
-                binding.nextButton.isClickable = true
+            }else if (phoneNumber.length != 10){
+              binding.editTextPhoneNumber.error = "Must be 10 Digits"
+
+          }
+          else {
+//                binding.nextButton.isClickable = true
                 binding.nextButton.isEnabled = true
 
                 //    ph = binding.editTextPhoneNumber.text.toString()
@@ -151,7 +157,7 @@ class SignUpFragment : Fragment() {
             when {
                 name.isNullOrEmpty() -> {
                     binding.nextButton.isEnabled = false
-                    binding.nextButton.isClickable = false
+//                    binding.nextButton.isClickable = false
 
 
                     binding.editTextYourName.error = "This field is required"
@@ -159,15 +165,15 @@ class SignUpFragment : Fragment() {
                 name.length > 15 -> {
                     binding.nextButton.isEnabled = false
                     binding.nextButton.isClickable = false
-
                     binding.editTextYourName.error = "Maximum 15 characters"
 
                 }
-                else -> {
+                name.length in 4..14 && !name.isNullOrEmpty() && !name.contains(".*[0-9]".toRegex())->{
                     binding.nextButton.isClickable = true
                     binding.nextButton.isEnabled = true
 
                 }
+
             }
 
         })
@@ -176,6 +182,7 @@ class SignUpFragment : Fragment() {
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
+                    showView()
                     response.data?.let { message ->
                         Log.i("ServerResponse", message)
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -187,6 +194,7 @@ class SignUpFragment : Fragment() {
 
                 is Resource.Error -> {
                     hideProgressBar()
+                    showView()
                     response.error?.let { error ->
                         Log.i("ServerResponse", error)
                         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
@@ -196,6 +204,7 @@ class SignUpFragment : Fragment() {
 
                 is Resource.Loading -> {
                     showProgressBar()
+                    hideView()
                     Log.i("ServerResponse", "Loading")
 
                 }
@@ -203,26 +212,29 @@ class SignUpFragment : Fragment() {
         })
 
 
+        Log.i("buttons", "called")
+
         binding.apply {
+//               nextButton.isEnabled = true
             nextButton.setOnClickListener {
-                binding.apply {
+                Log.i("button", "clicked")
+                   binding.apply {
 
-                    Log.i("button", "clicked")
-                    editTextPhoneNumber.isEnabled = false
-                    editTextSetPassword.isEnabled = false
-                    editTextEmail.isEnabled = false
-                    editTextCompanyName.isEnabled = false
-                    editTextYourName.isEnabled = false
+                       Log.i("button", "clicked")
+                       editTextPhoneNumber.isEnabled = false
+                       editTextSetPassword.isEnabled = false
+                       editTextEmail.isEnabled = false
+                       editTextCompanyName.isEnabled = false
+                       editTextYourName.isEnabled = false
 
-
-                    nextButton.isEnabled = false
-                }
+                       nextButton.isEnabled = false
+                   }
                 val testNumber = editTextPhoneNumber.text.toString()
                 val testName = binding.editTextYourName.text.toString()
                 val testPassword = binding.editTextSetPassword.text.toString()
                 val testCompany = binding.editTextCompanyName.text.toString()
                 val testMail = binding.editTextEmail.text.toString()
-
+                Log.i("button1", testCompany)
 
                 val signUpDetails =
                     SignUpData(testCompany, testMail, testNumber, testName, testPassword)
@@ -232,6 +244,8 @@ class SignUpFragment : Fragment() {
             }
         }
 
+
+
         viewModel._isSignUp.observe(viewLifecycleOwner, Observer {
             binding.apply {
                 editTextPhoneNumber.isEnabled = false
@@ -239,7 +253,6 @@ class SignUpFragment : Fragment() {
                 editTextEmail.isEnabled = false
                 editTextCompanyName.isEnabled = false
                 editTextYourName.isEnabled = false
-
 
                 nextButton.isEnabled = false
             }
@@ -256,12 +269,9 @@ class SignUpFragment : Fragment() {
                 editTextCompanyName.isEnabled = true
                 editTextYourName.isEnabled = true
 
-
                 nextButton.isEnabled = true
             }
         })
-
-
 
 
         return binding.root
@@ -275,5 +285,12 @@ class SignUpFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
     }
 
+    private fun hideView(){
+        binding.mainView.visibility = View.INVISIBLE
+    }
+
+    private fun showView(){
+        binding.mainView.visibility = View.VISIBLE
+    }
 
 }

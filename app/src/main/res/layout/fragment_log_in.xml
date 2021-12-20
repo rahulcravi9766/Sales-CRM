@@ -1,6 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,12 +11,14 @@
     </data>
 
     <FrameLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.rahul.signUpAndLogInFragments.LogInFragment">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/blue">
@@ -96,13 +98,15 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email">
+                    android:hint=" Email">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text"
+                        android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_email"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,13 +126,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password">
+                    app:helperText=""
+                    android:hint=" Password">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit_text"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_password"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,7 +195,7 @@
                 android:id="@+id/forgot_password_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Forgot your password?"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline9"
@@ -273,6 +280,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/google_sign_in_button"
                 app:startIconDrawable="@drawable/ic_eyeopen" />
 
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

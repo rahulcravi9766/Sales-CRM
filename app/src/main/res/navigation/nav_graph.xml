@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_bottomBarActivity"
+            app:destination="@id/bottomBarActivity" />
+        <action
+            android:id="@+id/action_logInFragment_to_sentOtpFragment"
+            app:destination="@id/sentOtpFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -31,4 +37,21 @@
         android:name="com.rahul.activities.BottomBarActivity"
         android:label="activity_bottom_bar"
         tools:layout="@layout/activity_bottom_bar" />
+    <fragment
+        android:id="@+id/sentOtpFragment"
+        android:name="com.rahul.signUpAndLogInFragments.SentOtpFragment"
+        android:label="fragment_sent_otp"
+        tools:layout="@layout/fragment_sent_otp" >
+        <action
+            android:id="@+id/action_sentOtpFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.rahul.signUpAndLogInFragments.VerifyOtpFragment"
+        android:label="VerifyOtpFragment" >
+        <argument
+            android:name="mobileNumberDetails"
+            app:argType="com.rahul.postRequest.MobileNumber" />
+    </fragment>
 </navigation>

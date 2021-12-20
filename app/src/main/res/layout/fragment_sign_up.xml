@@ -15,6 +15,7 @@
         tools:context="com.rahul.signUpAndLogInFragments.SignUpFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/blue">
@@ -155,15 +156,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email">
+                    android:hint=" Email">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_email"
                         android:layout_width="match_parent"
-                        android:text="@={viewModelInXml.email}"
                         android:layout_height="wrap_content"
-                        />
+                        android:drawableStart="@drawable/ic_email"
+                        android:imeOptions="actionDone"
+                        android:text="@={viewModelInXml.email}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,15 +185,17 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password">
+                    app:passwordToggleEnabled="true"
+                    android:hint=" Password">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_set_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModelInXml.password}"
-                        />
+                        android:drawableStart="@drawable/ic_password"
+                        android:imeOptions="actionDone"
+                        android:text="@={viewModelInXml.password}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -211,14 +215,16 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="your name">
+                    android:hint=" Your Name">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_your_name"
-                        android:text="@{viewModelInXml.name}"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_person"
+                        android:imeOptions="actionDone"
+                        android:text="@{viewModelInXml.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -238,16 +244,18 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone number">
+                    android:hint=" Phone number">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModelInXml.phoneNumber}"
+                        android:drawableStart="@drawable/ic_phone"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
                         android:maxLength="10"
-                        android:inputType="number"/>
+                        android:text="@={viewModelInXml.phoneNumber}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -263,19 +271,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout5">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField4"
+                    android:id="@+id/company_edit_container"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Company">
+                    app:helperText=""
+                    app:helperTextTextColor="@color/red"
+                    android:hint=" Company">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_company_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModelInXml.company}"
-                        />
+                        android:drawableStart="@drawable/ic_company"
+                        android:imeOptions="actionDone"
+                        android:text="@={viewModelInXml.company}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -288,8 +299,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
-                android:fontFamily="sans-serif-condensed-light"
                 android:enabled="false"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="Next"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_blue"
@@ -330,17 +341,23 @@
 
             </RelativeLayout>
 
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/guideline6"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

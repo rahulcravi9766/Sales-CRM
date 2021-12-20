@@ -1,4 +1,4 @@
-package com.rahul.postRequest
+package com.rahul.response
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,19 +1,15 @@
 package com.rahul.viewModel
 
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.rahul.postRequest.SignUpData
-import com.rahul.postRequest.Test
 import com.rahul.repository.SalesRepository
 import com.rahul.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -31,11 +27,7 @@ class SignUpViewModel @Inject constructor(
     var name: MutableLiveData<String> = MutableLiveData()
     var company: MutableLiveData<String> = MutableLiveData()
     val exception = MutableLiveData<String>()
-//    var validateEmail = false
-//    var validatePassword = false
-//    var validatePhoneNumber = false
-//    var validateName = false
-//    var validateCompany = false
+
 
     var isAllValidated: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -54,22 +46,19 @@ class SignUpViewModel @Inject constructor(
 
 
 
-
-
     fun signUpData(signUpData: SignUpData) = viewModelScope.launch {
 
         try {
             signUp.postValue(Resource.Loading())
-            val res = repository.signUpDetails(signUpData)
-            Log.i("response", res.toString())
-            signUp.postValue(handleResponse(res))
+            val response = repository.signUpDetails(signUpData)
+            Log.i("response", response.toString())
+            signUp.postValue(handleResponse(response))
+
 
         } catch (error: Exception) {
             exception.value = error.toString()
             Log.i("errorMessage", exception.value.toString())
         }
-
-
     }
 
 

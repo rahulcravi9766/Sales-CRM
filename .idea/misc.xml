@@ -6,16 +6,19 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/activity_button.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/deal_money_button.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/feeds_button.xml" value="0.16822916666666668" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable/ic_phone.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/activity_bottom_bar.xml" value="0.21369450714823177" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_activity.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_deals.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_finish_sign_up.xml" value="0.13269927536231885" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_fullscreen.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_leads.xml" value="0.1" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_log_in.xml" value="0.14266304347826086" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_log_in.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_more.xml" value="0.1" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_sent_otp.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_shedules.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_verify_otp.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/menu/bottom_menus.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/SalesCRM/app/src/main/res/drawable-v24/ic_eyeopen.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/SalesCRM/app/src/main/res/drawable-v24/ic_icons_google.xml" value="0.16822916666666668" />
