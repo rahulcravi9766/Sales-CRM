@@ -7,14 +7,17 @@ import com.rahul.postRequest.SignUpData
 import com.rahul.response.LogInResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface SalesApi {
 
     //Here I will write the verbs for request and response from the server
 
+
     @POST("Registration")
     suspend fun signUpDetails(@Body signUpRequest : SignUpData) : Response<String>
+
 
     @POST("login")
     suspend fun logInDetails(@Body logInRequest : LogInData) : Response<LogInResponse>

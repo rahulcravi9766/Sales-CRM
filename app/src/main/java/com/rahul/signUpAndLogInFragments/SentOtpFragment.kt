@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavArgs
 import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.rahul.postRequest.MobileNumber
 import com.rahul.salescrm.databinding.FragmentSentOtpBinding
@@ -37,63 +39,51 @@ class SentOtpFragment : Fragment() {
         navController = findNavController()
 
 
-
         viewModel.mobileNumber.observe(viewLifecycleOwner, Observer { mobileNumber ->
 
-            if (mobileNumber.length == 10){
-
+            if (mobileNumber.length != 10){
                 binding.inputMobileNumber.error = "Invalid Phone number"
-
             }
-
         })
 
 
-
         binding.sendOtpButton.setOnClickListener {
+
             mobileNumber = binding.phNoText.text.toString() + binding.inputMobileNumber.text.toString()
             Log.i("number",mobileNumber)
             val number = MobileNumber(mobileNumber)
             viewModel.mobileNumberLogIn(number)
+//            val action = SentOtpFragmentDirections.actionSentOtpFragmentToVerifyOtpFragment()
+//            navController.navigate(action)
         }
 
         viewModel.mobileLogIn.observe(this, Observer { response ->
             when (response) {
-
                 is Resource.Success -> {
-
-                    hideProgressBar()
-                    showView()
+                    viewModel.progressBar(false)
+                    viewModel.mainViewVisibility(true)
                     response.data?.let { message ->
                         Log.i("OtpResponse", message)
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 
                     }
-//
-//                    val extras = FragmentNavigatorExtras(binding.popularMoviesRecycler to "detail_pic")
-//                    val action: NavDirections =
-//                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
-//                    navController.navigate(action, extras)
                 }
 
                 is Resource.Error -> {
-                    hideProgressBar()
-                    showView()
+                    viewModel.progressBar(false)
+                    viewModel.mainViewVisibility(true)
                     response.error?.let { error ->
                         Log.i("OtpResponse", error)
                         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
                 is Resource.Loading -> {
-                    showProgressBar()
-                    hideView()
+                    viewModel.progressBar(true)
+                    viewModel.mainViewVisibility(false)
                     Log.i("OtpResponse", "Loading")
-
                 }
             }
-
         })
 
 
@@ -102,19 +92,4 @@ class SentOtpFragment : Fragment() {
         return binding.root
     }
 
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.INVISIBLE
-    }
-
-    private fun hideView() {
-        binding.mainView.visibility = View.INVISIBLE
-    }
-
-    private fun showView() {
-        binding.mainView.visibility = View.VISIBLE
-    }
-
-    private fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
-    }
 }

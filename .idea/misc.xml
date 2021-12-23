@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForDataBinding/app/src/main/res/layout/fragment_log_in.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForDataBinding/app/src/main/res/layout/fragment_sign_up.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForDataBinding/app/src/main/res/layout/fragment_verify_otp.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/activity_button.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/deal_money_button.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/drawable-v24/feeds_button.xml" value="0.16822916666666668" />
@@ -15,7 +18,7 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_leads.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_log_in.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_more.xml" value="0.1" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_sent_otp.xml" value="0.1" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_sent_otp.xml" value="0.22" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_shedules.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/CrmForSignUp/app/src/main/res/layout/fragment_verify_otp.xml" value="0.22" />

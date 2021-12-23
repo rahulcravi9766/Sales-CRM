@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.rahul.postRequest.LogInData
 import com.rahul.salescrm.databinding.FragmentLogInBinding
 import com.rahul.utils.Resource
+import com.rahul.utils.toast
 import com.rahul.viewModel.LogInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,8 @@ class LogInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        navController = findNavController()
+
         sharedPreferences = context?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)!!
 
         val emailPreferences = sharedPreferences.getString(KEY_EMAIL,null)
@@ -53,7 +56,6 @@ class LogInFragment : Fragment() {
         binding.viewModelInXml = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        navController = findNavController()
 
 
 
@@ -66,6 +68,7 @@ class LogInFragment : Fragment() {
             val action = LogInFragmentDirections.actionLogInFragmentToSentOtpFragment()
             navController.navigate(action)
         }
+
 
 
         binding.loginButton.setOnClickListener {
@@ -85,12 +88,12 @@ class LogInFragment : Fragment() {
         viewModel.logIn.observe(this, Observer { response ->
             when (response) {
                 is Resource.Success -> {
-                    hideProgressBar()
-                    showView()
+                    viewModel.progressBar(false)
+                    viewModel.mainViewVisibility(true)
                     response.data?.let { message ->
                         Log.i("LogInResponse", message.toString())
-                        Toast.makeText(context, message.toString(), Toast.LENGTH_SHORT).show()
-
+                    //    Toast.makeText(context, message.toString(), Toast.LENGTH_SHORT).show()
+                         toast(message.toString())
                     }
                     val editor : SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString(KEY_EMAIL,binding.emailEditText.text.toString())
@@ -102,18 +105,19 @@ class LogInFragment : Fragment() {
                 }
 
                 is Resource.Error -> {
-                    hideProgressBar()
-                    showView()
+                    viewModel.progressBar(false)
+                    viewModel.mainViewVisibility(true)
                     response.error?.let { error ->
                         Log.i("LogInResponse", error)
-                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                        toast(error)
+                     //   Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
 
                     }
                 }
 
                 is Resource.Loading -> {
-                    showProgressBar()
-                    hideView()
+                    viewModel.progressBar(true)
+                    viewModel.mainViewVisibility(false)
                     Log.i("LogInResponse", "Loading")
 
                 }
@@ -124,47 +128,29 @@ class LogInFragment : Fragment() {
 
         viewModel.email.observe(this, Observer { email ->
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-
-
                 binding.emailEditText.error = "Enter your valid email id"
-            } else if (email.isNullOrEmpty()) {
-
-                binding.emailEditText.error = "Field is required"
-            } else {
-                this.email = binding.emailEditText.text.toString()
+                return@Observer
             }
+            if (email.isNullOrEmpty()) {
+                binding.emailEditText.error = "Field is required"
+                return@Observer
+            }
+                this.email = binding.emailEditText.text.toString()
+
 
         })
 
 
         viewModel.password.observe(this, Observer { password ->
-
             if (!password.isNullOrEmpty()) {
                 this.password = binding.passwordEditText.text.toString()
+                return@Observer
             }
+
 
         })
 
-
-
-
         return binding.root
-    }
-
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.INVISIBLE
-    }
-
-    private fun hideView() {
-        binding.mainView.visibility = View.INVISIBLE
-    }
-
-    private fun showView() {
-        binding.mainView.visibility = View.VISIBLE
-    }
-
-    private fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
     }
 
 }

@@ -51,7 +51,7 @@
         android:name="com.rahul.signUpAndLogInFragments.VerifyOtpFragment"
         android:label="VerifyOtpFragment" >
         <argument
-            android:name="mobileNumberDetails"
-            app:argType="com.rahul.postRequest.MobileNumber" />
+            android:name="phNumber"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -19,8 +19,6 @@ class SalesRepository @Inject constructor(
     }
 
     suspend fun logInDetails(logInData: LogInData): Response<LogInResponse>{
-        Log.i("logIn",logInData.toString())
-
         return api.logInDetails(logInData)
 
     }

@@ -1,6 +1,7 @@
 package com.rahul.viewModel
 
 import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -22,13 +23,15 @@ class VerifyOtpViewModel @Inject constructor(
     private val state: SavedStateHandle
 
 ) : ViewModel() {
-
-    init {
-        setValues()
-    }
+//
+//    init {
+//        setValues()
+//    }
     var otpLogIn: MutableLiveData<Resource<String>> = MutableLiveData()
-    var mobileNumber : MutableLiveData<String> = MutableLiveData()
+    lateinit var mobileNumber : String
     var otp : MutableLiveData<Int> = MutableLiveData()
+    var progress = ObservableField<Boolean>()
+    var mainView = ObservableField(true)
 
     fun verifyOtp(otp: VerifyOtp) = viewModelScope.launch {
 
@@ -39,6 +42,7 @@ class VerifyOtpViewModel @Inject constructor(
             otpLogIn.postValue(handleResponse(response))
 
         } catch (error: Exception) {
+            Log.i("responseOtp", error.toString())
 
         }
     }
@@ -60,12 +64,27 @@ class VerifyOtpViewModel @Inject constructor(
         return Resource.Error(response.message())
     }
 
-
-
-
-    private fun setValues() {
-        val otpDetails = state.get<MobileNumber>("mobileNumberDetails")
-        mobileNumber.value = otpDetails?.mobileNumber
-
+    fun progressBar(value: Boolean) {
+        if (value){
+            this.progress.set(true)
+        }else{
+            this.progress.set(false)
+        }
     }
+
+    fun mainViewVisibility(value: Boolean){
+        if (value){
+            this.mainView.set(true)
+        }else{
+            this.mainView.set(false)
+        }
+    }
+
+
+//
+//    private fun setValues() {
+//        val otpDetails = state.get<MobileNumber>("mobileNumberDetails")
+//        mobileNumber.value = otpDetails?.mobileNumber
+//
+//    }
 }

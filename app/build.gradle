@@ -92,4 +92,7 @@ dependencies {
 
     //splash screen
     implementation "androidx.core:core-splashscreen:1.0.0-alpha02"
+
+    //progressBar
+    implementation 'com.github.MindorksOpenSource:RadialProgressBar:v1.3'
 }

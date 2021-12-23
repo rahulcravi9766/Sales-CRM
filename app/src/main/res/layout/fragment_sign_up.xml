@@ -16,6 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_view"
+            android:visibilities="@{!viewModelInXml.mainView}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/blue">
@@ -224,7 +225,7 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_person"
                         android:imeOptions="actionDone"
-                        android:text="@{viewModelInXml.name}" />
+                        android:text="@={viewModelInXml.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -299,7 +300,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
-                android:enabled="false"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="Next"
                 android:textAllCaps="false"
@@ -337,7 +337,7 @@
                     android:layout_toEndOf="@id/already_text"
                     android:text="Log in"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 
@@ -353,7 +353,8 @@
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:indeterminate="true"
+                android:visibilities="@{!viewModelInXml.progress}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -365,3 +366,4 @@
 </layout>
 
 
+<!--    android:onButtonClick="@{!viewModelInXml.buttonClick}"-->
