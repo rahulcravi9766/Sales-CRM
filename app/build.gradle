@@ -95,4 +95,13 @@ dependencies {
 
     //progressBar
     implementation 'com.github.MindorksOpenSource:RadialProgressBar:v1.3'
+
+    // Circular Image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //data store type
+  //  implementation "androidx.datastore:datastore:1.0.0"
+
+    //data store preference
+   // implementation "androidx.datastore:datastore-preferences:1.0.0"
 }

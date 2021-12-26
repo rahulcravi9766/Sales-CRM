@@ -1,5 +1,6 @@
 package com.rahul.viewModel
 
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
@@ -19,42 +20,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LogInViewModel @Inject constructor(
-    private val repository: SalesRepository
+    private val repository: SalesRepository,
+    private val sharedPreferences: SharedPreferences
+
 ) : ViewModel() {
 
+
+    private val isLoggedIn = false
     var logIn: MutableLiveData<Resource<LogInResponse>> = MutableLiveData()
-    var email: MutableLiveData<String> = MutableLiveData()
-    var password: MutableLiveData<String> = MutableLiveData()
+    var email = MutableLiveData<String>()
+    var password = MutableLiveData<String>()
     var progress = ObservableField<Boolean>()
     var mainView = ObservableField(true)
-    var emailBinding : String? = null
-    var passwordBinding : String? = null
+    var isEmailValid = false
+    var isPasswordValid = false
 
 
-//    private var isLoggedIn: MutableLiveData<Boolean> = MutableLiveData()
-//    val _isLoggedIn: LiveData<Boolean>
-//        get() = isLoggedIn
-
-    fun logInButton(view : View){
-
-        viewModelScope.launch {
-
-            try {
-                if (emailBinding.isNullOrEmpty() || passwordBinding.isNullOrEmpty()){
-
-                    Resource.Error("Please fill this",null)
-                    Log.i("logInVM","failure")
-                    return@launch
-                }
-                Log.i("logInVM","Success")
-            }catch (error: Exception){
-                Log.i("responseL", error.toString())
-            }
-        }
-
-
-        //if everything is correct , we have to write the success code here
-    }
 
 
     fun logInData(logInData: LogInData) = viewModelScope.launch {
@@ -77,6 +58,11 @@ class LogInViewModel @Inject constructor(
 
             if (response.isSuccessful) {
                 response.body()?.let { resultResponse ->
+
+                    Log.i("responseAc", resultResponse.accessToken)
+                    Log.i("responseRef", resultResponse.refreshToken)
+
+
                     return Resource.Success(resultResponse)
                 }
 

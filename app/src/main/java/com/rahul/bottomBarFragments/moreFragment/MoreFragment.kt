@@ -1,4 +1,4 @@
-package com.rahul.bottomBarFragments
+package com.rahul.bottomBarFragments.moreFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

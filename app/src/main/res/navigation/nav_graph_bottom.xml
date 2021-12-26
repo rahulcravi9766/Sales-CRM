@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_shedules" />
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.rahul.bottomBarFragments.MoreFragment"
+        android:name="com.rahul.bottomBarFragments.moreFragment.MoreFragment"
         android:label="fragment_more"
         tools:layout="@layout/fragment_more" />
     <fragment

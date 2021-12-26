@@ -1,10 +1,13 @@
 package com.rahul.module
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.rahul.network.SalesApi
 import com.rahul.utils.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,4 +32,11 @@ object AppModule {
     @Singleton
     fun providesMovieApi(retrofit: Retrofit): SalesApi =
         retrofit.create(SalesApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("preferences_name", Context.MODE_PRIVATE)
+    }
 }

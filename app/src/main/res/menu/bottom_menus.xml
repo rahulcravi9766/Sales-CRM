@@ -3,27 +3,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_schedule"
+        android:id="@+id/schedulesFragment"
         android:enabled="true"
         android:icon="@drawable/feeds_button"
         android:title="Schedule" />
     <item
-        android:id="@+id/nav_deals"
+        android:id="@+id/dealsFragment"
         android:enabled="true"
         android:icon="@drawable/deal_money_button"
         android:title="Deals" />
     <item
-        android:id="@+id/nav_activity"
+        android:id="@+id/activityFragment"
         android:enabled="true"
         android:icon="@drawable/activity_button"
         android:title="Activity" />
     <item
-        android:id="@+id/nav_leads"
+        android:id="@+id/leadsFragment"
         android:enabled="true"
         android:icon="@drawable/person_add"
         android:title="Leads" />
     <item
-        android:id="@+id/nav_more"
+        android:id="@+id/moreFragment"
         android:enabled="true"
         android:icon="@drawable/more_horizontal"
         android:title="More" />

@@ -28,12 +28,12 @@ class LogInFragment : Fragment() {
     private lateinit var binding: FragmentLogInBinding
     private lateinit var navController: NavController
     private val viewModel: LogInViewModel by viewModels()
-    private lateinit var email: String
-    private lateinit var password: String
     private lateinit var sharedPreferences: SharedPreferences
     private val SHARED_PREF_NAME = "myPref"
     private val KEY_PASSWORD = "password"
     private val KEY_EMAIL = "email"
+    private val KEY_REFRESH = "refresh"
+    private val KEY_ACCESS = "access"
 
 
     override fun onCreateView(
@@ -56,9 +56,6 @@ class LogInFragment : Fragment() {
         binding.viewModelInXml = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
-
-
         binding.signUpText.setOnClickListener {
             val action = LogInFragmentDirections.actionLogInFragmentToSignUpFragment()
             navController.navigate(action)
@@ -69,39 +66,37 @@ class LogInFragment : Fragment() {
             navController.navigate(action)
         }
 
-
-
-        binding.loginButton.setOnClickListener {
-
-            email = binding.emailEditText.text.toString()
-            password = binding.passwordEditText.text.toString()
-            Log.i("data", email)
-            Log.i("data", password)
-
-
-            val logInDetails = LogInData(email, password)
-            viewModel.logInData(logInDetails)
-
-
-        }
-
         viewModel.logIn.observe(this, Observer { response ->
             when (response) {
                 is Resource.Success -> {
+                    Log.i("refresh",response.data!!.refreshToken)
+//                    val refreshToken = response.data.refreshToken
+//                    val accessToken = response.data.accessToken
                     viewModel.progressBar(false)
                     viewModel.mainViewVisibility(true)
                     response.data?.let { message ->
                         Log.i("LogInResponse", message.toString())
-                    //    Toast.makeText(context, message.toString(), Toast.LENGTH_SHORT).show()
-                         toast(message.toString())
+                         toast("Log In successful")
                     }
                     val editor : SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString(KEY_EMAIL,binding.emailEditText.text.toString())
                     editor.putString(KEY_PASSWORD,binding.passwordEditText.text.toString())
+                    editor.putString(KEY_REFRESH,response.data.refreshToken)
+                    editor.putString(KEY_ACCESS,response.data.accessToken)
                     editor.apply()
+                     val prefsAIDs = sharedPreferences.all.values
+                    Log.i("shared",prefsAIDs.toString())
+
+                    val token = sharedPreferences.getString(KEY_REFRESH,"").toString()
+                    Log.i("refToken",token)
 
                     val action = LogInFragmentDirections.actionLogInFragmentToBottomBarActivity()
                     navController.navigate(action)
+
+//                    activity?.run {
+//                        supportFragmentManager.beginTransaction().remove(this@LogInFragment)
+//                            .commitAllowingStateLoss()
+//                    }
                 }
 
                 is Resource.Error -> {
@@ -110,8 +105,6 @@ class LogInFragment : Fragment() {
                     response.error?.let { error ->
                         Log.i("LogInResponse", error)
                         toast(error)
-                     //   Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
@@ -119,38 +112,44 @@ class LogInFragment : Fragment() {
                     viewModel.progressBar(true)
                     viewModel.mainViewVisibility(false)
                     Log.i("LogInResponse", "Loading")
-
                 }
             }
-
         })
-
 
         viewModel.email.observe(this, Observer { email ->
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.emailEditText.error = "Enter your valid email id"
+                binding.emailEditText.error = "Invalid Email Id"
                 return@Observer
             }
             if (email.isNullOrEmpty()) {
                 binding.emailEditText.error = "Field is required"
                 return@Observer
             }
-                this.email = binding.emailEditText.text.toString()
-
+                viewModel.isEmailValid = true
+            Log.i("email", viewModel.email.value.toString())
 
         })
-
 
         viewModel.password.observe(this, Observer { password ->
-            if (!password.isNullOrEmpty()) {
-                this.password = binding.passwordEditText.text.toString()
+            if (password.isNullOrEmpty()) {
+                binding.passwordEditText.error = "Field is required"
                 return@Observer
             }
-
+            viewModel.isPasswordValid = true
+            Log.i("password", viewModel.password.value.toString())
 
         })
 
+        binding.loginButton.setOnClickListener {
+            if (viewModel.isEmailValid && viewModel.isPasswordValid){
+                val logInDetails = LogInData(viewModel.email.value!!, viewModel.password.value!!)
+                viewModel.logInData(logInDetails)
+            }else{
+                toast("Invalid Email Id or Password")
+            }
+        }
         return binding.root
     }
-
 }
+
+//todo check the back stack working of log in

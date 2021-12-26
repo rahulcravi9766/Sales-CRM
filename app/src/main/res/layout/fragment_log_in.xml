@@ -106,8 +106,9 @@
                         android:id="@+id/email_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewModelInXml.emailBinding}"
                         android:drawableStart="@drawable/ic_email"
+                        android:maxLines="1"
+                        android:text="@={viewModelInXml.email}"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -134,10 +135,11 @@
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_edit_text"
-                        android:text="@={viewModelInXml.passwordBinding}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_password"
+                        android:maxLines="1"
+                        android:text="@={viewModelInXml.password}"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -154,7 +156,6 @@
                 android:backgroundTint="@color/white"
                 android:fontFamily="sans-serif-condensed-light"
                 android:text="Login"
-                android:onClick="@{viewModelInXml::logInButton}"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_blue"
                 android:textStyle="bold"

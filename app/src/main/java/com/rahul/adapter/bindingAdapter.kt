@@ -9,8 +9,3 @@ import com.google.android.material.button.MaterialButton
 fun setVisibility(view: View, visible: Boolean) {
     view.visibility = if (visible) View.INVISIBLE else View.VISIBLE
 }
-
-//@BindingAdapter("android:onButtonClick")
-//fun passwordValidation(button: MaterialButton,value : Boolean){
-//    button.isEnabled = value
-//}
