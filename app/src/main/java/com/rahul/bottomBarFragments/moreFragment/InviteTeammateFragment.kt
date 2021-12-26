@@ -5,17 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.rahul.salescrm.R
+import com.rahul.salescrm.databinding.FragmentInviteTeammateBinding
+import com.rahul.salescrm.databinding.FragmentSignUpBinding
 
 
 class InviteTeammateFragment : Fragment() {
 
+    private lateinit var binding: FragmentInviteTeammateBinding
+    private lateinit var navController: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_invite_teammate, container, false)
+    ): View {
+
+        binding = FragmentInviteTeammateBinding.inflate(inflater,container, false)
+        navController = findNavController()
+
+        return binding.root
     }
 
 

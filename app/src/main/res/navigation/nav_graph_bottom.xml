@@ -19,7 +19,14 @@
         android:id="@+id/moreFragment"
         android:name="com.rahul.bottomBarFragments.moreFragment.MoreFragment"
         android:label="fragment_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_productsListFragment"
+            app:destination="@id/productsListFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_inviteTeammateFragment"
+            app:destination="@id/inviteTeammateFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activityFragment"
         android:name="com.rahul.bottomBarFragments.ActivityFragment"
@@ -30,4 +37,14 @@
         android:name="com.rahul.bottomBarFragments.LeadsFragment"
         android:label="fragment_leads"
         tools:layout="@layout/fragment_leads" />
+    <fragment
+        android:id="@+id/productsListFragment"
+        android:name="com.rahul.bottomBarFragments.moreFragment.ProductsListFragment"
+        android:label="fragment_products_list"
+        tools:layout="@layout/fragment_products_list" />
+    <fragment
+        android:id="@+id/inviteTeammateFragment"
+        android:name="com.rahul.bottomBarFragments.moreFragment.InviteTeammateFragment"
+        android:label="fragment_invite_teammate"
+        tools:layout="@layout/fragment_invite_teammate" />
 </navigation>
