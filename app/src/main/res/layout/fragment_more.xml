@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context="com.rahul.bottomBarFragments.moreFragment.MoreFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -21,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/circle_shape"
             android:padding="15dp"
             android:src="@drawable/ic_person"
@@ -32,7 +32,8 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
             android:text="Name"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/company_name"
@@ -43,8 +44,9 @@
             android:id="@+id/company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:text="Company"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_first_letter"
@@ -190,7 +192,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="100dp" />
+        app:layout_constraintGuide_begin="120dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"

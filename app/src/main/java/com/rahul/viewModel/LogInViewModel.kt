@@ -34,8 +34,20 @@ class LogInViewModel @Inject constructor(
     var mainView = ObservableField(true)
     var isEmailValid = false
     var isPasswordValid = false
+    val isValidated = MutableLiveData<Boolean>()
+    init {
+        checkUserDetails()
+    }
+    fun checkUserDetails(){
+        isValidated.value = sharedPreferences.contains("isLoggedIn") && (sharedPreferences.getBoolean("isLoggedIn",false))
+    }
 
 
+    fun saveUserInfo(token:String){
+        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
+        sharedPreferences.edit().putString("token",token).apply()
+
+    }
 
 
     fun logInData(logInData: LogInData) = viewModelScope.launch {

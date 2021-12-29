@@ -22,7 +22,7 @@ import com.rahul.viewModel.VerifyOtpViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class VerifyOtpFragment() : Fragment() {
+class VerifyOtpFragment : Fragment() {
 
     private lateinit var binding: FragmentVerifyOtpBinding
     private lateinit var navController: NavController

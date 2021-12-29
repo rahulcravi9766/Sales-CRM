@@ -87,7 +87,7 @@ class SentOtpFragment : Fragment() {
         })
 
 
-
+//todo send otp bug not fixed
 
         return binding.root
     }

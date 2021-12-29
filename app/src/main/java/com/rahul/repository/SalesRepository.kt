@@ -2,10 +2,7 @@ package com.rahul.repository
 
 import android.util.Log
 import com.rahul.network.SalesApi
-import com.rahul.postRequest.LogInData
-import com.rahul.postRequest.MobileNumber
-import com.rahul.postRequest.VerifyOtp
-import com.rahul.postRequest.SignUpData
+import com.rahul.postRequest.*
 import com.rahul.response.LogInResponse
 import retrofit2.Response
 import javax.inject.Inject
@@ -30,5 +27,9 @@ class SalesRepository @Inject constructor(
 
     suspend fun verifyOtp(otp : VerifyOtp) : Response<String>{
         return api.verifyOtp(otp)
+    }
+
+    suspend fun inviteTeammate(token: String,invitation: Invitation): Response<String>{
+        return api.inviteTeammate(token,invitation)
     }
 }

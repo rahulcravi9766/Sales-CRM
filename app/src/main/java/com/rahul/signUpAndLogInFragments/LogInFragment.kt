@@ -20,6 +20,7 @@ import com.rahul.utils.Resource
 import com.rahul.utils.toast
 import com.rahul.viewModel.LogInViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class LogInFragment : Fragment() {
@@ -29,7 +30,7 @@ class LogInFragment : Fragment() {
     private lateinit var navController: NavController
     private val viewModel: LogInViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
-    private val SHARED_PREF_NAME = "myPref"
+   // private val SHARED_PREF_NAME = "myPref"
     private val KEY_PASSWORD = "password"
     private val KEY_EMAIL = "email"
     private val KEY_REFRESH = "refresh"
@@ -43,18 +44,30 @@ class LogInFragment : Fragment() {
 
         navController = findNavController()
 
-        sharedPreferences = context?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)!!
+        viewModel.isValidated.observe(viewLifecycleOwner, Observer {
+            if (it){
+                val action = LogInFragmentDirections.actionLogInFragmentToBottomBarActivity()
+                navController.navigate(action)
+            }
+        })
+      //  sharedPreferences = context?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)!!
 
-        val emailPreferences = sharedPreferences.getString(KEY_EMAIL,null)
+//        val accessToken = sharedPreferences.getString("token",null)
+//
+//        if (accessToken != null){
+//            val action = LogInFragmentDirections.actionLogInFragmentToBottomBarActivity()
+//            navController.navigate(action)
+//        }
 
-        if (emailPreferences != null){
-            val action = LogInFragmentDirections.actionLogInFragmentToBottomBarActivity()
-            navController.navigate(action)
-        }
 
+//        GlobalScope.launch(Dispatchers.IO) {
+//            delay(1000)
+//        }
         binding = FragmentLogInBinding.inflate(inflater, container, false)
         binding.viewModelInXml = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+
 
         binding.signUpText.setOnClickListener {
             val action = LogInFragmentDirections.actionLogInFragmentToSignUpFragment()
@@ -69,26 +82,30 @@ class LogInFragment : Fragment() {
         viewModel.logIn.observe(this, Observer { response ->
             when (response) {
                 is Resource.Success -> {
-                    Log.i("refresh",response.data!!.refreshToken)
+                    Log.i("refresh",response.data!!.accessToken)
 //                    val refreshToken = response.data.refreshToken
 //                    val accessToken = response.data.accessToken
                     viewModel.progressBar(false)
                     viewModel.mainViewVisibility(true)
-                    response.data?.let { message ->
+                    response.data.let { message ->
                         Log.i("LogInResponse", message.toString())
                          toast("Log In successful")
                     }
-                    val editor : SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString(KEY_EMAIL,binding.emailEditText.text.toString())
-                    editor.putString(KEY_PASSWORD,binding.passwordEditText.text.toString())
-                    editor.putString(KEY_REFRESH,response.data.refreshToken)
-                    editor.putString(KEY_ACCESS,response.data.accessToken)
-                    editor.apply()
-                     val prefsAIDs = sharedPreferences.all.values
-                    Log.i("shared",prefsAIDs.toString())
+                    viewModel.saveUserInfo(response.data.refreshToken)
 
-                    val token = sharedPreferences.getString(KEY_REFRESH,"").toString()
-                    Log.i("refToken",token)
+
+
+//                    val editor : SharedPreferences.Editor = sharedPreferences.edit()
+//                    editor.putString(KEY_EMAIL,binding.emailEditText.text.toString())
+//                    editor.putString(KEY_PASSWORD,binding.passwordEditText.text.toString())
+//                    editor.putString(KEY_REFRESH,response.data.refreshToken)
+//                    editor.putString(KEY_ACCESS,response.data.accessToken)
+//                    editor.apply()
+//                     val prefsAIDs = sharedPreferences.all.values
+//                    Log.i("shared",prefsAIDs.toString())
+//
+//                    val token = sharedPreferences.getString(KEY_REFRESH,"").toString()
+//                    Log.i("refToken",token)
 
                     val action = LogInFragmentDirections.actionLogInFragmentToBottomBarActivity()
                     navController.navigate(action)
